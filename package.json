@@ -1,0 +1,25 @@
+{
+  "name": "serversideinventory",
+  "version": "1.0.0",
+  "description": "Server Side Inventory ==",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarekazzazi/serverSideInventory.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tarekazzazi/serverSideInventory/issues"
+  },
+  "homepage": "https://github.com/tarekazzazi/serverSideInventory#readme",
+  "dependencies": {
+    "ajax": "^0.0.4",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}
