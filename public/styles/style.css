@@ -30,6 +30,14 @@
   width: 200px;
   height: 200px;
 }
+/* Adds class select */
+.select {
+  background-color: red;
+}
+/* Removes class Deselect on second click */
+.deselect {
+  background-color: rgb(19, 20, 21);
+}
 
 .grid-item {
   padding: 1em;
