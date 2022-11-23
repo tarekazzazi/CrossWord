@@ -1,8 +1,15 @@
 $(Ready);
+// Global variables
+let i = 0;
 
 function Ready() {
-  // randomize();
+  // move into own function
+  $(document).on("keydown", keyupfunction);
+
   $("li").on("click", selectLevel);
+}
+function landingPage() {
+  console.log(levels);
 }
 
 function changecolor() {
@@ -17,9 +24,43 @@ function changecolor() {
   }
 }
 
+function keyupfunction(e) {
+  e.preventDefault();
+  console.log("KEYYS ARE UP");
+  // Move keyfunction into here
+  // use e.which
+  var code = e.keyCode || e.which;
+
+  // If up arrow pressed do something
+  // convert to switch statement
+  if (code == 38) {
+    //Do something
+    // sets a limit on i
+    if (i !== 0) {
+      i = i - 1;
+      console.log(i);
+    }
+
+    $(`ul li:eq(${i})`).css("background-color", "brown");
+    // background color a class
+    $(`ul li:gt(${i})`).css("background-color", "black");
+    $(`ul li:lt(${i})`).css("background-color", "black");
+  } else if (code == 40) {
+    // sets a limit on i
+    if (i !== 3) {
+      i = i + 1;
+      console.log(i);
+    }
+
+    $("li + li").css("background-color", "brown");
+    // sets the range between li elements to make background black
+    $(`ul li:gt(${i})`).css("background-color", "black");
+    $(`ul li:lt(${i})`).css("background-color", "black");
+  }
+}
+
 function selectLevel() {
   let i = $(this).val();
-
   console.log(i);
   const levels = [
     {

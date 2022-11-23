@@ -1,6 +1,9 @@
 * {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
+body {
+  overflow: hidden;
+}
 .container {
   position: relative;
   border: 10px solid black;
@@ -51,6 +54,13 @@ h3 {
 /* Level list item styles */
 .levelSelectList li {
   padding: 0.2em;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.levelSelectList li:hover {
+  cursor: pointer;
+  background-color: brown;
 }
 /* each gameboard square styling */
 .grid-item {
