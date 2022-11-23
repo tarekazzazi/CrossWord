@@ -38,7 +38,21 @@
 .deselect {
   background-color: rgb(19, 20, 21);
 }
-
+h3 {
+  margin: 0;
+}
+/* Level Select list styling */
+.levelSelectList {
+  display: inline-block;
+  text-align: left;
+  padding-right: 40%;
+  list-style: none;
+}
+/* Level list item styles */
+.levelSelectList li {
+  padding: 0.2em;
+}
+/* each gameboard square styling */
 .grid-item {
   padding: 1em;
   border: 2px solid rgb(28, 40, 54, 0.8);

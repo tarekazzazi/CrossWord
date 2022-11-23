@@ -1,7 +1,8 @@
 $(Ready);
 
 function Ready() {
-  randomize();
+  // randomize();
+  $("li").on("click", selectLevel);
 }
 
 function changecolor() {
@@ -16,12 +17,37 @@ function changecolor() {
   }
 }
 
-function randomize() {
+function selectLevel() {
+  let i = $(this).val();
+
+  console.log(i);
+  const levels = [
+    {
+      level: 1,
+      words: ["c-at", "arm-", "tr-y", "f-ur"],
+    },
+    {
+      level: 2,
+      words: ["do-g", "wolf-", "-"],
+    },
+    {
+      level: 3,
+      words: ["do-g", "wolf-", "-"],
+    },
+  ];
+
+  const level = levels[i];
+  start({ level: level });
+}
+
+function start({ level }) {
+  $(".levelSelect").remove();
   // min 16 letters
   const letters = [];
-  const answer = ["c-at", "arm-", "tr-y", "f-ur"];
+  console.log(level);
+
   // splits answer strings up and pushes them into a new array as individual letter strings
-  for (an of answer) {
+  for (an of level.words) {
     l = an.split("");
     letters.push(...l);
   }
