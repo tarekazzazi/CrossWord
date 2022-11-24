@@ -47,10 +47,10 @@ function keyupfunction(e) {
     $(`ul li:lt(${i})`).css("background-color", "black");
   } else if (code == 40) {
     // sets a limit on i
-    if (i !== 3) {
-      i = i + 1;
-      console.log(i);
-    }
+    // if (i !== 3) {
+    i = i + 1;
+    console.log(i);
+    // }
 
     $("li + li").css("background-color", "brown");
     // sets the range between li elements to make background black
@@ -69,7 +69,7 @@ function selectLevel() {
     },
     {
       level: 2,
-      words: ["do-g", "wolf-", "-"],
+      words: ["do-g", "wolf-", "-", "-"],
     },
     {
       level: 3,
