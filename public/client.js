@@ -41,16 +41,16 @@ function keyupfunction(e) {
       console.log(i);
     }
 
-    $(`ul li:eq(${i})`).css("background-color", "brown");
+    $(`ul li:eq(${i})`).hasClass('level-card').css("background-color", "brown");
     // background color a class
-    $(`ul li:gt(${i})`).css("background-color", "black");
-    $(`ul li:lt(${i})`).css("background-color", "black");
+    $(`ul li:gt(${i})`).hasClass('level-card').css("background-color", "black");
+    $(`ul li:lt(${i})`).hasClass('level-card').css("background-color", "black");
   } else if (code == 40) {
     // sets a limit on i
-    // if (i !== 3) {
+    if (i !== 3) {
     i = i + 1;
     console.log(i);
-    // }
+    }
 
     $("li + li").css("background-color", "brown");
     // sets the range between li elements to make background black
@@ -82,7 +82,7 @@ function selectLevel() {
 }
 
 function start({ level }) {
-  $(".levelSelect").remove();
+  $(".levelSelectWrapperBg").remove();
   // min 16 letters
   const letters = [];
   console.log(level);
