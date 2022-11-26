@@ -13,3 +13,7 @@ STRETCH = FUNCTIONALITY
 Across Answers
 
 1.  Down Answers
+[   ] make trapzoid its own class 
+[   ] use z-index to position thngs where I want em
+[   ] make all the shapes I want then layer them around landing page to look nice
+[   ] make r key reload page add to if else statement 

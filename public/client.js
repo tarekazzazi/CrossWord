@@ -6,19 +6,22 @@ function Ready() {
   // move into own function
   $(document).on("keydown", keyupfunction);
 
-  $("li").on("click", selectLevel);
-}
-function landingPage() {
-  console.log(levels);
+  $("li").on("click", handleClickListner);
 }
 
+function handleClickListner(){
+  i = $(this).val()
+  selectLevel({i: i})
+}
+
+
 function changecolor() {
-  console.log("in change color");
   if ($(this).hasClass("select")) {
     // Removes Color from selected Square
     console.log("Remove Class Select");
     $(this).removeClass("select");
   } else {
+    console.log("Add Class Select")
     // Adds color to selected square
     $(this).addClass("select");
   }
@@ -32,19 +35,20 @@ function keyupfunction(e) {
   var code = e.keyCode || e.which;
 
   // If up arrow pressed do something
-  // convert to switch statement
+              // convert to switch statement
   if (code == 38) {
-    //Do something
     // sets a limit on i
+              // eventually should be removed and replaced with array.length
     if (i !== 0) {
       i = i - 1;
       console.log(i);
     }
 
-    $(`ul li:eq(${i})`).hasClass('level-card').css("background-color", "brown");
-    // background color a class
-    $(`ul li:gt(${i})`).hasClass('level-card').css("background-color", "black");
-    $(`ul li:lt(${i})`).hasClass('level-card').css("background-color", "black");
+    $(`ul div:eq(${i})`).css("background-color", "brown");
+    // sets other li background color to default that are > or < the index
+    $(`ul div:gt(${i})`).css("background-color", "rgb(22, 28, 60)");
+    $(`ul div:lt(${i})`).css("background-color", "rgb(22, 28, 60)");
+
   } else if (code == 40) {
     // sets a limit on i
     if (i !== 3) {
@@ -52,16 +56,18 @@ function keyupfunction(e) {
     console.log(i);
     }
 
-    $("li + li").css("background-color", "brown");
-    // sets the range between li elements to make background black
-    $(`ul li:gt(${i})`).css("background-color", "black");
-    $(`ul li:lt(${i})`).css("background-color", "black");
+    $(`ul div:eq(${i})`).css("background-color", "brown");
+   // sets other li background color to default that are > or < the index
+    $(`ul div:gt(${i})`).css("background-color", "rgb(22, 28, 60)");
+    $(`ul div:lt(${i})`).css("background-color", "rgb(22, 28, 60)");
+  }
+   if (code == 13) {
+    console.log(i);
+    selectLevel({i: i})
   }
 }
 
-function selectLevel() {
-  let i = $(this).val();
-  console.log(i);
+function selectLevel({i}) {
   const levels = [
     {
       level: 1,
@@ -74,6 +80,10 @@ function selectLevel() {
     {
       level: 3,
       words: ["do-g", "wolf-", "-"],
+    },
+    {
+      level: 4,
+      words: ["do00-g", "wolf-", "ggh-"],
     },
   ];
 
@@ -97,12 +107,12 @@ function start({ level }) {
   for (const letter of letters) {
     // Appends a div without a value where ever a - is in a string
     if (letter === "-") {
-      $(".game-board-container").append(`<div class="grid-item"></div>`);
+      $(".game-board-container").append(`<div class="grid-item blocker"></div>`);
     } else {
       $(".game-board-container").append(
-        `<div class="grid-item">${letter}</div>`
+        `<div class="grid-item change-color">${letter}</div>`
       );
     }
   }
-  $(".grid-item").on("click", changecolor);
+  $(".change-color").on("click", changecolor);
 }
