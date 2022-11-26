@@ -4,10 +4,8 @@
 body {
   overflow: hidden;
 }
-/* empty divs or words that dont fill all the squares on the grid */
-.blocker{
-  background-color: rgb(29, 42, 58);
-}
+
+
 
 .iphone-container {
   position: relative;
@@ -16,7 +14,7 @@ body {
   width: 270px;
   height: 554px;
 }
-
+/* iphone screen */
 .iphone-bg {
   color: white;
   text-align: center;
@@ -47,9 +45,17 @@ body {
   background-color: rgb(19, 20, 21);
 }
 
+/* Hides scrollbar while keeping functionallity */
+.levelSelectList::-webkit-scrollbar {
+  display: none;
+} 
 
 /* Level Select list styling */
 .levelSelectList {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 185px; 
+  height: 310px;
   padding-top: 35px;
   display: block;
   list-style: none;
@@ -59,6 +65,7 @@ body {
   font-family: monospace;
   font-weight: bold;
 }
+
 
 .levelSelectWrapperBg {
   position: relative;
@@ -110,9 +117,15 @@ background: rgb(29, 42, 58); ;
   background-color: rgb(22, 28, 60);
 }
 
-/* each gameboard square styling */
+/* Game borad page styling */
+/* Each gameboard square styling */
 .grid-item {
   cursor: pointer;
   padding: 1em;
   border: 2px solid rgb(28, 40, 54, 0.8);
+}
+
+/* Empty divs/ */
+.blocker{
+  background-color: rgb(29, 42, 58);
 }

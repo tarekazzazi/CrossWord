@@ -34,6 +34,7 @@ function Ready() {
   renderLandingPage();
   $(document).on("keydown", keyupfunction);
   $("li").on("click", handleClickListner);
+  $('.levelSelectWrapperBg').scrollTop(100);
 }
 
 function handleClickListner(){
