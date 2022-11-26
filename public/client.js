@@ -1,19 +1,57 @@
 $(Ready);
 // Global variables
 let i = 0;
+// Array of Objects
+const levels = [
+  {
+    level: 1,
+    words: ["c-at", "arm-", "tr-y", "f-ur"],
+  },
+  {
+    level: 2,
+    words: ["do-g", "wolf-", "-", "-"],
+  },
+  {
+    level: 3,
+    words: ["do-g", "wolf-", "-"],
+  },
+  {
+    level: 4,
+    words: ["do00-g", "wolf-", "ggh-"],
+  },
+  {
+    level: 5,
+    words: ['cat','-on','-now','soon'],
+  },
+  {
+    level: 6,
+    words: ['at','-on','-nw','son'],
+  },
+];
 
 function Ready() {
   // move into own function
+  renderLandingPage();
   $(document).on("keydown", keyupfunction);
-
   $("li").on("click", handleClickListner);
 }
 
 function handleClickListner(){
-  i = $(this).val()
-  selectLevel({i: i})
+  i = $(this).val();
+  console.log('this.val >>',i);
+  selectLevel({i: i});
 }
 
+function renderLandingPage() {
+
+  for (l of levels) {
+    console.log(l.level);
+  $('.levelSelectList').append(`    
+  <div class="level-card">
+  <li value="${l.level-1}">level ${l.level}</li>
+  </div>`);
+  }
+}
 
 function changecolor() {
   if ($(this).hasClass("select")) {
@@ -51,7 +89,7 @@ function keyupfunction(e) {
 
   } else if (code == 40) {
     // sets a limit on i
-    if (i !== 3) {
+    if (i !== 5) {
     i = i + 1;
     console.log(i);
     }
@@ -68,26 +106,8 @@ function keyupfunction(e) {
 }
 
 function selectLevel({i}) {
-  const levels = [
-    {
-      level: 1,
-      words: ["c-at", "arm-", "tr-y", "f-ur"],
-    },
-    {
-      level: 2,
-      words: ["do-g", "wolf-", "-", "-"],
-    },
-    {
-      level: 3,
-      words: ["do-g", "wolf-", "-"],
-    },
-    {
-      level: 4,
-      words: ["do00-g", "wolf-", "ggh-"],
-    },
-  ];
-
   const level = levels[i];
+  console.log(level);
   start({ level: level });
 }
 
@@ -95,7 +115,7 @@ function start({ level }) {
   $(".levelSelectWrapperBg").remove();
   // min 16 letters
   const letters = [];
-  console.log(level);
+  console.log('level is',level);
 
   // splits answer strings up and pushes them into a new array as individual letter strings
   for (an of level.words) {

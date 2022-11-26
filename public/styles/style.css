@@ -9,7 +9,7 @@ body {
   background-color: rgb(29, 42, 58);
 }
 
-.container {
+.iphone-container {
   position: relative;
   border: 10px solid black;
   border-radius: 25px;
