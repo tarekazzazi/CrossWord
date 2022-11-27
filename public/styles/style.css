@@ -4,6 +4,7 @@
 body {
   overflow: hidden;
 }
+
 #close{
   cursor: pointer;
   text-align: right;
@@ -64,12 +65,9 @@ body {
 }
 /* Adds class select */
 .select {
-  background-color: red;
+  background-color: green;
 }
-/* Removes class Deselect on second click */
-.deselect {
-  background-color: rgb(19, 20, 21);
-}
+
 
 /* Hides scrollbar while keeping functionallity */
 .levelSelectList::-webkit-scrollbar {
@@ -154,4 +152,8 @@ background: rgb(29, 42, 58); ;
 /* Empty divs/ */
 .blocker{
   background-color: rgb(29, 42, 58);
+}
+
+ol.question {
+  padding-right: 40px;
 }
