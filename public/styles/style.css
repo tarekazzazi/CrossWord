@@ -4,8 +4,33 @@
 body {
   overflow: hidden;
 }
+#close{
+  cursor: pointer;
+  text-align: right;
+  padding-right: 10px;
+  margin: 0;
+}
 
+.blur-bg{
+  position: fixed;
+  z-index: 3;
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  height: 350px;
+  width: 235px;
+}
 
+.instructions-detail {
+  color: black;
+  position: fixed;
+  z-index: 4;
+  left: 53px;
+  top: 187px;
+  background-color: beige;
+  border-radius: 5px;
+  height: 200px;
+  width: 200px;
+}
 
 .iphone-container {
   position: relative;
@@ -14,6 +39,7 @@ body {
   width: 270px;
   height: 554px;
 }
+
 /* iphone screen */
 .iphone-bg {
   color: white;

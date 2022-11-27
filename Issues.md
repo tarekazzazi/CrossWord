@@ -1,4 +1,6 @@
-- [ ] keydown function disables hover select once active allowing me to click a level that is not highlighted
+- [resolved] keydown function disables hover select once active allowing me to click a level that is not highlighted
 - [ ] Word find puzzels do not have a min or max number of squares
 - [ ] Have to manually open Dev tools in chrome manually for some reason IDK
 - [ ] r key no longer triggers reload instead triggers keydown function
+- [ ] when I start going through the list of game levels i fails to === 0 at start using arrow keys
+- [  ] enter key keeps producing gameboards 
