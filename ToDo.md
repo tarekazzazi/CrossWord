@@ -12,6 +12,7 @@ Across Answers
 [x] pop words array elements so only 16 show on page at a time per game level
 [   ] figure out a word game to play
 
+
 1[ ] allow user to select a area
 2[ ] remove letters and replace with empty div that when clicked can enter a input val
 3[ ] render question from array for that specific area

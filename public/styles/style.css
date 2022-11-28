@@ -51,17 +51,22 @@ body {
   background-color: rgb(19, 20, 21);
   border-radius: 15px;
 }
-
-.game-board-container {
+.game-board-container{
   /* css grid */
+    /* display: grid;
+    grid-gap: 5px;
+    grid-template-rows: 50px 50px 50px 50px;
+    grid-template-columns: 50px 50px 50px 50px; */
+  /* Other css */
+    margin-left: 11%;
+    width: 200px;
+    height: 200px;
+}
+.grid-row-wrapper {
   display: grid;
   grid-gap: 5px;
-  grid-template-rows: 50px 50px 50px 50px;
+  /* grid-template-rows: 50px 50px 50px 50px; */
   grid-template-columns: 50px 50px 50px 50px;
-  /* Other css */
-  margin-left: 11%;
-  width: 200px;
-  height: 200px;
 }
 /* Adds class select */
 .select {

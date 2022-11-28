@@ -9,6 +9,8 @@ function Ready() {
 
 // Global variables
 let i = 0;
+  // sets the length of each grid row
+  let gridRowLength = 4;
 // Array of Objects
 // Animal themed crossword
 const levels = [
@@ -24,7 +26,7 @@ const levels = [
     "bird",
     "f-up",
     "lynx",
-    "zctp",
+    "zct-",
   ],
   },
   {
@@ -160,6 +162,9 @@ function handleDetailClose(){
 }
 
 function start({ level }) {
+    // this function is doing a lot of different things
+    // try to condese
+
   $(".levelSelectWrapperBg").remove();
   console.log('this is the LVL',level);
   for (q of level.questions){
@@ -185,18 +190,33 @@ function start({ level }) {
   while(letters.length > 16){
     letters.pop(); 
   }
+  testAppendDivWrapper();
+  // // counts elements in a div with class grid row wrapper
+  // $(".game-board-container").append(`<div class="grid-row-wrapper"> </div>`);
   // Render game board elements
-  for (const letter of letters) {
-    // Appends a div without a value where ever a - is in a string
-    if (letter === "-") {
-      $(".game-board-container").append(`<div class="grid-item blocker"></div>`);
-    } else {
-      $(".game-board-container").append(
-        `<div class="grid-item change-color">${letter}</div>`
-      );
-    }
-  }
+  // for (const letter of letters) {
+  //   // Appends a div without a value where ever a - is in a string
+  //   var count = $(".grid-row-wrapper").find(".grid-item").length;
+
+  //   // { } Append a new wrapper every four divs mabye use a while true statement
+  //   if (count === gridRowLength) {
+  //     $(".game-board-container").append(`<div class="grid-row-wrapper"></div>`);
+  //     gridRowLength = gridRowLength + 4;
+  //   }else if (count < gridRowLength){
+  //     console.log("this is grid row length <<<", gridRowLength);
+  //     $(".grid-row-wrapper").append(`<div class="grid-item change-color">${letter}</div>`);
+  //       console.log(count, letter);
+  //   } 
+    
+  //       // Prepends div with class grid item as long as less than row length is less than the set row length
+  //   // console.log("grid row length Outside if else", gridRowLength);
+  
+  // }
   $(".change-color").on("click", changecolor);
+}
+function selectRowOfLettersArea(){
+  console.log('row of letters');
+
 }
 /* If Correct change select color to gold */
 /* If Incorrect turn select color red and remove class */
@@ -223,8 +243,41 @@ function checkUserAnswer() {
   if (answer === levels[0].words[0] ) {
     console.log("SUCESS BIRD IS THE WORD");
     $(".select").css("background-color", "#ffd700");
-   
+  }
+}
+let row = 0;
+let testCount = 0;
+function testAppendDivWrapper(){
+  
+  // breaks letters into rows
+  const rows = [
+    ['d','f','g','t'],
+    ['s','x','v','y'],
+    ['q','w','e','r'],
+    ['z','c','v','m'],
+    ]
+  // appends wrapper
+  // console.log(rows[row]);
+  // for (r of rows[row]){
+  //   console.log(r);
+  //   $(".test").append(`<div class="type-here">${r}</div>`)
+  // }
+  // row = row + 1;
+  console.log("ending with row as" , row);
+  // BREAK //
+  if(testCount < 4){
+    // appends 4 test contaienrs
+    $(".game-board-container").append(`<div class="test">WRAPME</div>`);
+  }
+    
+  for (let i = 0; i < rows[row].length; i++){
+    console.log(row);
+    let thisrow = rows[row];
+    console.log(thisrow[i]);
+
+  $(".test").append(`<div class="type-here">${thisrow[i]}</div>`)
+  }
   
  
-  }
+
 }
