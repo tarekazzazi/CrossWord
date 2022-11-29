@@ -9,10 +9,9 @@ function Ready() {
 
 // Global variables
 let i = 0;
-  // sets the length of each grid row
-  let gridRowLength = 4;
 // Array of Objects
 // Animal themed crossword
+// Dashs represent no letter spaces
 const levels = [
   {
     level: 1,
@@ -21,12 +20,11 @@ const levels = [
     "A name for a small and weak animal",
     "A wild cat found in the northern latitudes of North America"
   ],
-    // ? divs where I want no letter
     words: [
     ["b","i","r","d"],
     ["f","-","u","p"],
     ["l","y","n","x"],
-    ["z","c","t","-"],
+    ["z","c","t","-",],
   ],
   },
   {
@@ -162,8 +160,9 @@ function handleDetailClose(){
 }
 
 function start({ level }) {
-    // this function is doing a lot of different things
-    // try to condese
+
+  // this function is doing a lot of different things
+  // try to condese
 
   /** Renders questions **/
   $(".levelSelectWrapperBg").remove();
@@ -180,13 +179,18 @@ function start({ level }) {
       console.log(level.words[[i]]);
       $(".game-board-container").append(`<div class="grid-row-wrapper" id="this${i}"></div>`)
       // Inner loop targets the containers unique id
-      // appends that row of letters to the dom
+      // Appends that array or row of letters to the dom
     for(row of level.words[i]){
-      console.log("this", row)
+      // Checks if a letter is a dash and appends a div with blocker class if true 
+      // else appends letters
+      if (row === "-") {
+        $(`#this${i}`).append(`<div class="blocker"></div>`);
+      }else {
       $(`#this${i}`).append(`<div class="grid-item change-color">${row}</div>`);
-
+      }
     }
   }
+
 
   /** Makes sure level stays 4x4 grid **/
   // make a 4 x 4 grid if words provided fail to = 16 with blank divs
@@ -199,6 +203,7 @@ function start({ level }) {
   }
  
   $(".change-color").on("click", changecolor);
+  $(".grid-item").on("click", whatGotClicked);
 }
 function selectRowOfLettersArea(){
   console.log('row of letters');
@@ -219,7 +224,14 @@ function changecolor() {
     }
   
 }
+function selectHorizontal() {
+  console.log("hello my name is", $(this).parent())
+  if ($(this).parent().css("border", "5px solid red") === true) {
+    console.log("remove");
+  }
+  $(this).parent().css("border", "5px solid red");
 
+};
 function checkUserAnswer() {
   console.log("CHECKING...");
   // variables
