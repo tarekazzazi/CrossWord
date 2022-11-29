@@ -203,7 +203,7 @@ function start({ level }) {
   }
  
   $(".change-color").on("click", changecolor);
-  $(".grid-item").on("click", whatGotClicked);
+  $(".grid-item").on("click", selectHorizontal);
 }
 function selectRowOfLettersArea(){
   console.log('row of letters');
