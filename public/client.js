@@ -23,10 +23,10 @@ const levels = [
   ],
     // ? divs where I want no letter
     words: [
-    "bird",
-    "f-up",
-    "lynx",
-    "zct-",
+    ["b","i","r","d"],
+    ["f","-","u","p"],
+    ["l","y","n","x"],
+    ["z","c","t","-"],
   ],
   },
   {
@@ -165,53 +165,39 @@ function start({ level }) {
     // this function is doing a lot of different things
     // try to condese
 
+  /** Renders questions **/
   $(".levelSelectWrapperBg").remove();
   console.log('this is the LVL',level);
   for (q of level.questions){
   $(".question").append(`<li style="font-size:13px; text-align:left;">${q}</li> <br/>`);
   }
-
   $(".submit").on("click", checkUserAnswer);
-  // min 16 letters
-  const letters = [];
 
-  // splits word strings up and pushes them into a new array 
-  // as individual letter strings
-  for (an of level.words) {
-    l = an.split("");
-    letters.push(...l);
+  /** Renders Divs from levels array of objects **/
+  let loopTime = 4;
+  // Runs 4 times appending a new div
+  for (let i = 0; i < loopTime; i++) {
+      console.log(level.words[[i]]);
+      $(".game-board-container").append(`<div class="grid-row-wrapper" id="this${i}"></div>`)
+      // Inner loop targets the containers unique id
+      // appends that row of letters to the dom
+    for(row of level.words[i]){
+      console.log("this", row)
+      $(`#this${i}`).append(`<div class="grid-item change-color">${row}</div>`);
+
+    }
   }
-  console.log('letters length',letters.length)
+
+  /** Makes sure level stays 4x4 grid **/
   // make a 4 x 4 grid if words provided fail to = 16 with blank divs
-  while(letters.length < 16){
+  while(level.words.length < 16){
     letters.push("-");
   }
   // removes exess divs greater than a 4 X 4 grid
-  while(letters.length > 16){
+  while(level.words.length > 16){
     letters.pop(); 
   }
-  testAppendDivWrapper();
-  // // counts elements in a div with class grid row wrapper
-  // $(".game-board-container").append(`<div class="grid-row-wrapper"> </div>`);
-  // Render game board elements
-  // for (const letter of letters) {
-  //   // Appends a div without a value where ever a - is in a string
-  //   var count = $(".grid-row-wrapper").find(".grid-item").length;
-
-  //   // { } Append a new wrapper every four divs mabye use a while true statement
-  //   if (count === gridRowLength) {
-  //     $(".game-board-container").append(`<div class="grid-row-wrapper"></div>`);
-  //     gridRowLength = gridRowLength + 4;
-  //   }else if (count < gridRowLength){
-  //     console.log("this is grid row length <<<", gridRowLength);
-  //     $(".grid-row-wrapper").append(`<div class="grid-item change-color">${letter}</div>`);
-  //       console.log(count, letter);
-  //   } 
-    
-  //       // Prepends div with class grid item as long as less than row length is less than the set row length
-  //   // console.log("grid row length Outside if else", gridRowLength);
-  
-  // }
+ 
   $(".change-color").on("click", changecolor);
 }
 function selectRowOfLettersArea(){
@@ -246,31 +232,3 @@ function checkUserAnswer() {
   }
 }
 
-
-
-let row = 0;
-let testCount = 0;
-function testAppendDivWrapper(){
-  
-  // breaks letters into rows
-  const rows = [
-    ['d','f','g','t'],
-    ['s','x','v','y'],
-    ['q','w','e','r'],
-    ['z','c','v','m'],
-    ]
-  // BREAK //
-  let loopTime = 4;
-  // Runs 4 times appending a new div
-  for (let i = 0; i < loopTime; i++) {
-      console.log(rows[[i]]);
-      $(".game-board-container").append(`<div class="row-container" id="this${i}">this row</div>`)
-      // Inner loop targets the containers unique id
-      // appends that row of letters to the dom
-    for(row of rows[i]){
-      console.log("this", row)
-      $(`#this${i}`).append(`<div>${row}</div>`);
-
-    }
-  }
-}

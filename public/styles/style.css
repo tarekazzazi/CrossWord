@@ -65,7 +65,7 @@ body {
 .grid-row-wrapper {
   display: grid;
   grid-gap: 5px;
-  /* grid-template-rows: 50px 50px 50px 50px; */
+  padding-bottom: 5px ;
   grid-template-columns: 50px 50px 50px 50px;
 }
 /* Adds class select */
