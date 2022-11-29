@@ -191,11 +191,11 @@ function start({ level }) {
   /** Makes sure level stays 4x4 grid **/
   // make a 4 x 4 grid if words provided fail to = 16 with blank divs
   while(level.words.length < 16){
-    letters.push("-");
+    level.words.push("-");
   }
   // removes exess divs greater than a 4 X 4 grid
   while(level.words.length > 16){
-    letters.pop(); 
+    level.words.pop(); 
   }
  
   $(".change-color").on("click", changecolor);
