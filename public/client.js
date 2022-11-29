@@ -245,6 +245,9 @@ function checkUserAnswer() {
     $(".select").css("background-color", "#ffd700");
   }
 }
+
+
+
 let row = 0;
 let testCount = 0;
 function testAppendDivWrapper(){
@@ -256,28 +259,18 @@ function testAppendDivWrapper(){
     ['q','w','e','r'],
     ['z','c','v','m'],
     ]
-  // appends wrapper
-  // console.log(rows[row]);
-  // for (r of rows[row]){
-  //   console.log(r);
-  //   $(".test").append(`<div class="type-here">${r}</div>`)
-  // }
-  // row = row + 1;
-  console.log("ending with row as" , row);
   // BREAK //
-  if(testCount < 4){
-    // appends 4 test contaienrs
-    $(".game-board-container").append(`<div class="test">WRAPME</div>`);
-  }
-    
-  for (let i = 0; i < rows[row].length; i++){
-    console.log(row);
-    let thisrow = rows[row];
-    console.log(thisrow[i]);
+  let loopTime = 4;
+  // Runs 4 times appending a new div
+  for (let i = 0; i < loopTime; i++) {
+      console.log(rows[[i]]);
+      $(".game-board-container").append(`<div class="row-container" id="this${i}">this row</div>`)
+      // Inner loop targets the containers unique id
+      // appends that row of letters to the dom
+    for(row of rows[i]){
+      console.log("this", row)
+      $(`#this${i}`).append(`<div>${row}</div>`);
 
-  $(".test").append(`<div class="type-here">${thisrow[i]}</div>`)
+    }
   }
-  
- 
-
 }
