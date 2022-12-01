@@ -67,7 +67,9 @@ body {
 .select {
   background-color: green;
 }
-
+.border{
+  border: 3px solid red;
+}
 
 /* Hides scrollbar while keeping functionallity */
 .levelSelectList::-webkit-scrollbar {

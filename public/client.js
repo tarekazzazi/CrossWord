@@ -222,12 +222,19 @@ function changecolor() {
 }
 
 function selectHorizontal() {
-  console.log("hello my name is", $(this).parent())
-  if ($(this).parent().css("border", "5px solid red") === true) {
-    console.log("remove");
+  // Check grid of rows if another row is already selected
+  // Removes the row that isn't selected anymore
+  if($(".game-board-container").children('div').hasClass("border")){
+    // still a work in progress
+    $("div").parents().removeClass("border");
+  }else {
+    $(this).parent().addClass("border");
   }
-  $(this).parent().css("border", "5px solid red");
-
+  
+  // Selects child elements from parent border
+  // Going to be used to compare the answer typed to 
+  // the actual answer for the selected area
+  console.log($(this).parents().children());
 };
 
 function checkUserAnswer() {
