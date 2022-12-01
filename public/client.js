@@ -120,8 +120,7 @@ function keyupfunction(e) {
   // sets other li background color to default that are > or < the index
    $(`ul div:gt(${i})`).css("background-color", "rgb(22, 28, 60)");
    $(`ul div:lt(${i})`).css("background-color", "rgb(22, 28, 60)");
-
-  // If up arrow pressed do something
+  //  Switch key pressed
     switch(code){
       case 38:
         // sets a limit on i
@@ -205,10 +204,7 @@ function start({ level }) {
   $(".change-color").on("click", changecolor);
   $(".grid-item").on("click", selectHorizontal);
 }
-function selectRowOfLettersArea(){
-  console.log('row of letters');
 
-}
 /* If Correct change select color to gold */
 /* If Incorrect turn select color red and remove class */
 function changecolor() {
@@ -224,6 +220,7 @@ function changecolor() {
     }
   
 }
+
 function selectHorizontal() {
   console.log("hello my name is", $(this).parent())
   if ($(this).parent().css("border", "5px solid red") === true) {
@@ -232,6 +229,7 @@ function selectHorizontal() {
   $(this).parent().css("border", "5px solid red");
 
 };
+
 function checkUserAnswer() {
   console.log("CHECKING...");
   // variables
