@@ -5,6 +5,7 @@ function Ready() {
   $(document).on("keydown", keyupfunction);
   $("li").on("click", handleClickListner);
   $('#close').on('click', handleDetailClose);
+
 }
 
 // Global variables
@@ -100,7 +101,7 @@ const levels = [
 ];
 
 function renderLandingPage() {
-
+  $(".selector-border").hide();
   for (l of levels) {
     console.log(l.level);
   $('.levelSelectList').append(`    
@@ -193,16 +194,15 @@ function start({ level }) {
 
   /** Makes sure level stays 4x4 grid **/
   // make a 4 x 4 grid if words provided fail to = 16 with blank divs
-  while(level.words.length < 16){
-    level.words.push("-");
-  }
+
   // removes exess divs greater than a 4 X 4 grid
   while(level.words.length > 16){
     level.words.pop(); 
   }
  
   $(".change-color").on("click", changecolor);
-  $(".grid-item").on("click", selectHorizontal);
+  // $(".grid-item").on("click", selectHorizontal);
+  $(".grid-item").on("click",selectVertical);
 }
 
 /* If Correct change select color to gold */
@@ -225,8 +225,9 @@ function selectHorizontal() {
   // Check grid of rows if another row is already selected
   // Removes the row that isn't selected anymore
   if($(".game-board-container").children('div').hasClass("border")){
-    // still a work in progress
+    // removes class border with any div that has it in the game-board-container
     $("div").parents().removeClass("border");
+    $(this).parent().addClass("border");
   }else {
     $(this).parent().addClass("border");
   }
@@ -248,4 +249,28 @@ function checkUserAnswer() {
     $(".select").css("background-color", "#ffd700");
   }
 }
+// let count = 0;
+function selectVertical() {
+console.log('this was clicked',$(this));
+  for (word of levels[0].words) {
+    // columIndex = $(this)
+    // console.log(word);
+    columIndex = 1;
+      
+  
+      console.log('birdword is >>>>',word[0])
+      columIndex = word[0]; 
 
+    
+      console.log('>>>>>>>>>>>>>',);
+      // starts from index 1 which is the colum to far right
+      // selects active squares by appending a new div to them called selector
+      $(`.grid-item:nth-last-child(${4})`).append(`<div class="selector-border"> </div>`);
+      // this currently displays the selector border
+      $(".selector-border").show();
+      
+  }
+
+
+
+}
