@@ -72,21 +72,10 @@ body {
 .border{
   border: 3px solid red;
 }
-/* if a square is in the way sub tract 60px from height  */
-/* .selector-border{
-  z-index: -1;
-  /* margin-left: 192px;
-  margin-top: -205px; */
-  /* position: absolute; */
-  /* border: 3px solid brown; */
-  /* width: 50px; */
-  /* height: 175px; */
-/* }  */
 
+/* vertical select for boxes */
 .selector-border{
   z-index: -1;
-  /* margin-left: 192px;
-  margin-top: -205px; */
   position: absolute;
   margin-left: -22px;
   margin-top: -39px;

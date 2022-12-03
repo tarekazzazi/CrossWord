@@ -17,3 +17,6 @@ Across Answers
 2[ ] remove letters and replace with empty div that when clicked can enter a input val
 3[ ] render question from array for that specific area
 4[ ] get val user entered and compare to answer for that specific selected area 
+
+    Down selector
+[X] loop through all arrays and use index as the selector element ( most likly will need 2 for loops)

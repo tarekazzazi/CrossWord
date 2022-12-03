@@ -5,3 +5,4 @@
 - [ ] when I start going through the list of game levels i fails to === 0 at start using arrow keys
 - [resolved] enter key keeps producing gameboards after on click function runs
 - [        ] when answer is correct on gameboard they turn yellow but where letters intersect does not appear as a selectable choice;
+- [        ] when creating a game level the border selector will not adjust to words of a different length that isnt 4
