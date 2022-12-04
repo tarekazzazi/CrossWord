@@ -2,10 +2,9 @@ $(Ready);
 
 function Ready() {
   $(document).on("load",renderLandingPage());
-  $(document).on("keydown", keyupfunction);
+  $(document).on("keydown", keydownfunction);
   $("li").on("click", handleClickListner);
   $('#close').on('click', handleDetailClose);
-
 }
 
 // Global variables
@@ -16,11 +15,11 @@ let i = 0;
 const levels = [
   {
     level: 1,
-    questions: [
-    "An animal with wings, feathers, and two legs", 
-    "A name for a small and weak animal",
-    "A wild cat found in the northern latitudes of North America"
-  ],
+    questions: {
+      vertical:["A name for a small and weak animal"],
+      horizontal:[ "An animal with wings, feathers, and two legs", "A wild cat found in the northern latitudes of North America"   ],
+    }
+  ,
     words: [
     ["b","i","r","d"],
     ["f","-","u","p"],
@@ -111,7 +110,7 @@ function renderLandingPage() {
   }
 }
 
-function keyupfunction(e) {
+function keydownfunction(e) {
   e.preventDefault();
   console.log("keydown");
 
@@ -151,7 +150,9 @@ function keyupfunction(e) {
 
 function handleClickListner(){
   i = $(this).val();
-  $(document).off("keydown");  
+  // turns keydown function off so its inactive
+  $(document).off("keydown");
+  // Passes Start function level prop so it knows what level to render 
   start({ level: levels[i] });
 }
 
@@ -167,9 +168,11 @@ function start({ level }) {
   /** Renders questions **/
   $(".levelSelectWrapperBg").remove();
   console.log('this is the LVL',level);
-  for (q of level.questions){
+  for (q of level.questions.horizontal){
   $(".question").append(`<li style="font-size:13px; text-align:left;">${q}</li> <br/>`);
   }
+
+  // Checks Answer
   $(".submit").on("click", checkUserAnswer);
 
   /** Renders Divs from levels array of objects **/
@@ -178,7 +181,7 @@ function start({ level }) {
   for (let i = 0; i < loopTime; i++) {
       console.log(level.words[[i]]);
       $(".game-board-container").append(`<div class="grid-row-wrapper" id="this${i}"></div>`)
-      // Inner loop targets the containers unique id
+      // Inner loop targets the container and adds a unique id
       // Appends that array or row of letters to the dom
     for(row of level.words[i]){
       // Checks if a letter is a dash and appends a div with blocker class if true 
@@ -186,11 +189,12 @@ function start({ level }) {
       if (row === "-") {
         $(`#this${i}`).append(`<div class="blocker"></div>`);
       }else {
-      $(`#this${i}`).append(`<div class="grid-item change-color">${row}</div>`);
+      $(`#this${i}`).append(`<div class="grid-item change-color" value="${row}"><input class="txt-input" maxlength="1"/></div>`);
       }
     }
   }
 
+  
 
   /** Makes sure level stays 4x4 grid **/
   // make a 4 x 4 grid if words provided fail to = 16 with blank divs
@@ -200,7 +204,9 @@ function start({ level }) {
     level.words.pop(); 
   }
  
+  // ** Game-Board-Element-Selectors  ** //
   $(".change-color").on("click", changecolor);
+
   // $(".grid-item").on("click", selectHorizontal);
   $(".grid-item").on("click",selectVertical);
 }
@@ -231,30 +237,15 @@ function selectHorizontal() {
   }else {
     $(this).parent().addClass("border");
   }
-  
+
   // Selects child elements from parent border
   // Going to be used to compare the answer typed to 
   // the actual answer for the selected area
   console.log($(this).parents().children());
 };
 
-function checkUserAnswer() {
-  console.log("CHECKING...");
-  // variables
-  const answer = $(".select").text();
-  console.log(answer);
-  // 0 must change to index of levels and words
-  if (answer === levels[0].words[0] ) {
-    console.log("SUCESS BIRD IS THE WORD");
-    $(".select").css("background-color", "#ffd700");
-  }
-}
-
 function selectVertical() {
-console.log('this was clicked',$(this));
-  for (word of levels[0].words) {
-      console.log('birdword is >>>>',$(this).index());
-      let columIndex;
+  let columIndex;
       switch($(this).index()){
         case 0:
           columIndex = 4;
@@ -272,15 +263,23 @@ console.log('this was clicked',$(this));
           console.log("no case selected : (");
         break;
       }
-      console.log('>>>>>>>>>>>>>',);
+    $(".grid-item").children('div').removeClass("selector-border"); 
       // starts from index 1 which is the colum to far right
-      // selects active squares by appending a new div to them called selector
-      $(`.grid-item:nth-last-child(${columIndex})`).append(`<div class="selector-border"> </div>`);
+      // selects active squares by appending a new div to them called selector 
+    $(`.grid-item:nth-last-child(${columIndex})`).append(`<div class="selector-border"> </div>`);
       // this currently displays the selector border
-      $(".selector-border").show();
-      
-  }
-
-
-
+    $(".selector-border").show();  
 }
+
+function checkUserAnswer() {
+  console.log("CHECKING...");
+  // variables
+  const answer = $(".select").text();
+  console.log(answer);
+  // 0 must change to index of levels and words
+  if (answer === levels[0].words[0] ) {
+    console.log("SUCESS BIRD IS THE WORD");
+    $(".select").css("background-color", "#ffd700");
+  }
+}
+
