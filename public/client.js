@@ -249,23 +249,33 @@ function checkUserAnswer() {
     $(".select").css("background-color", "#ffd700");
   }
 }
-// let count = 0;
+
 function selectVertical() {
 console.log('this was clicked',$(this));
   for (word of levels[0].words) {
-    // columIndex = $(this)
-    // console.log(word);
-    columIndex = 1;
-      
-  
-      console.log('birdword is >>>>',word[0])
-      columIndex = word[0]; 
-
-    
+      console.log('birdword is >>>>',$(this).index());
+      let columIndex;
+      switch($(this).index()){
+        case 0:
+          columIndex = 4;
+          break;
+        case 1:
+          columIndex = 3;
+          break;
+        case 2:
+          columIndex = 2;
+          break;
+        case 3:
+          columIndex = 1;
+          break;
+        default:
+          console.log("no case selected : (");
+        break;
+      }
       console.log('>>>>>>>>>>>>>',);
       // starts from index 1 which is the colum to far right
       // selects active squares by appending a new div to them called selector
-      $(`.grid-item:nth-last-child(${4})`).append(`<div class="selector-border"> </div>`);
+      $(`.grid-item:nth-last-child(${columIndex})`).append(`<div class="selector-border"> </div>`);
       // this currently displays the selector border
       $(".selector-border").show();
       

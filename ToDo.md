@@ -10,7 +10,6 @@ Across Answers
 
 [   ] detail view alert explaining how to play game on load
 [x] pop words array elements so only 16 show on page at a time per game level
-[   ] figure out a word game to play
 
 
 1[ ] allow user to select a area
@@ -20,3 +19,7 @@ Across Answers
 
     Down selector
 [X] loop through all arrays and use index as the selector element ( most likly will need 2 for loops)
+
+this all could be easier with tables next time
+[ ] allow verticle selector to work on change like horizontal one
+[ ] ability to pick either horizontal selector or verticle selector
