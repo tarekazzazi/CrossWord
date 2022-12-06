@@ -5,6 +5,8 @@ function Ready() {
   $(document).on("keydown", keydownfunction);
   $("li").on("click", handleClickListner);
   $('#close').on('click', handleDetailClose);
+  
+
 } 
 
 // Global variables
@@ -223,45 +225,24 @@ function start({ level }) {
     level.words.pop(); 
   }
  
-  // ** Game-Board-Element-Selectors  ** //
-  $(".change-color").on("click", changecolor);
-
   // conditionally render grid-item
   $(".grid-item").on("click", selectHorizontal);
-  // $(".grid-item").on("click",selectVertical);
+  $(".grid-item").on("click",selectVertical);
 }
 
 /* If Correct change select color to gold */
-/* If Incorrect turn select color red and remove class */
-function changecolor() {
-
-  if ($(this).hasClass("select")) {
-    // Removes Color from selected Square
-    console.log("Remove Class Select");
-    $(this).removeClass("select");
-  } else{
-    console.log("Add Class Select")
-    // Adds color to selected square
-    $(this).addClass("select");
-    }
-  
-}
 
 function selectHorizontal() {
   // Check grid of rows if another row is already selected
   // Removes the row that isn't selected anymore
 
-    $("div").parent().children().removeClass("border");
-    $(this).parent().children(".grid-item").addClass("border");
+    $("div").parent().children().removeClass("border select");
+    $(this).parent().children(".grid-item").addClass("border select");
   
-  // Selects child elements from parent border
-  // Going to be used to compare the answer typed to 
-  // the actual answer for the selected area
-  // console.log($(this).parents().children());
 };
 
 function selectVertical() {
-  // let columIndex = $(this).index();
+
   let columIndex;
       switch($(this).index()){
         case 0:
@@ -280,9 +261,9 @@ function selectVertical() {
           console.log("no case selected : (");
         break;
       }
-        $("div").parent().children().removeClass("border");
+        $("div").parent().children().removeClass("border select");
             // starts from index 1 which is the colum to far right
-        $(`.grid-item:nth-last-child(${columIndex})`).addClass("border");
+        $(`.grid-item:nth-last-child(${columIndex})`).addClass("border select");
 
       // this currently displays the selector border
     $(".border").show();  
@@ -293,9 +274,9 @@ function selectVertical() {
 function checkUserAnswer() {
   console.log("CHECKING...");
   const array1 = [];
-  // for each input with the class select push that inputs value to an array.
-  $('input.select').each(function () {
-    array1.push($(this).val()); 
+  // for each div with the class select go into child input and push that inputs value to an array.
+  $('div.select > input').each(function () {
+    array1.push($(this).val());
   });
   console.log(array1);
 
