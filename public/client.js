@@ -227,8 +227,8 @@ function start({ level }) {
   $(".change-color").on("click", changecolor);
 
   // conditionally render grid-item
-  // $(".grid-item").on("click", selectHorizontal);
-  $(".grid-item").on("click",selectVertical);
+  $(".grid-item").on("click", selectHorizontal);
+  // $(".grid-item").on("click",selectVertical);
 }
 
 /* If Correct change select color to gold */
@@ -250,21 +250,18 @@ function changecolor() {
 function selectHorizontal() {
   // Check grid of rows if another row is already selected
   // Removes the row that isn't selected anymore
-  if($(".game-board-container").children('div').hasClass("border")){
-    // removes class border with any div that has it in the game-board-container
-    $("div").parents().removeClass("border");
-    $(this).parent().addClass("border");
-  }else {
-    $(this).parent().addClass("border");
-  }
 
+    $("div").parent().children().removeClass("border");
+    $(this).parent().children(".grid-item").addClass("border");
+  
   // Selects child elements from parent border
   // Going to be used to compare the answer typed to 
   // the actual answer for the selected area
-  console.log($(this).parents().children());
+  // console.log($(this).parents().children());
 };
 
 function selectVertical() {
+  // let columIndex = $(this).index();
   let columIndex;
       switch($(this).index()){
         case 0:
@@ -283,19 +280,21 @@ function selectVertical() {
           console.log("no case selected : (");
         break;
       }
-    $(".grid-item").children('div').removeClass("selector-border"); 
-      // starts from index 1 which is the colum to far right
-      // selects active squares by appending a new div to them called selector 
-    $(`.grid-item:nth-last-child(${columIndex})`).append(`<div class="selector-border"> </div>`);
+        $("div").parent().children().removeClass("border");
+            // starts from index 1 which is the colum to far right
+        $(`.grid-item:nth-last-child(${columIndex})`).addClass("border");
+
       // this currently displays the selector border
-    $(".selector-border").show();  
+    $(".border").show();  
+
+  
 }
 
 function checkUserAnswer() {
   console.log("CHECKING...");
   const array1 = [];
+  // for each input with the class select push that inputs value to an array.
   $('input.select').each(function () {
-    // console.log($(this).val());
     array1.push($(this).val()); 
   });
   console.log(array1);
