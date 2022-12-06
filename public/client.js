@@ -5,7 +5,7 @@ function Ready() {
   $(document).on("keydown", keydownfunction);
   $("li").on("click", handleClickListner);
   $('#close').on('click', handleDetailClose);
-}
+} 
 
 // Global variables
 let i = 0;
@@ -168,6 +168,7 @@ function start({ level }) {
   /** Renders questions **/
   $(".levelSelectWrapperBg").remove();
   console.log('this is the LVL',level);
+
   for (q of level.questions.horizontal){
   $(".question").append(`<li style="font-size:13px; text-align:left;">${q}</li> <br/>`);
   }
@@ -187,14 +188,32 @@ function start({ level }) {
       // Checks if a letter is a dash and appends a div with blocker class if true 
       // else appends letters
       if (row === "-") {
-        $(`#this${i}`).append(`<div class="blocker"></div>`);
+      $(`#this${i}`).append(`<div class="blocker"></div>`);
       }else {
-      $(`#this${i}`).append(`<div class="grid-item change-color" value="${row}"><input class="txt-input" maxlength="1"/></div>`);
+      $(`#this${i}`).append(`<div class="grid-item change-color" value="${row}"><input type="text" class="txt-input change-color txtNumeric" maxlength="1"/></div>`);
       }
     }
   }
+  // Prevents input with class to enter numbers 
+  $('.txtNumeric').keydown(function (e) {
 
-  
+    if (e.shiftKey || e.ctrlKey || e.altKey) {
+    
+      e.preventDefault();
+      
+    } else {
+    
+      var key = e.keyCode;
+      
+      if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+      
+        e.preventDefault();
+        
+      }
+
+    }
+    
+  });
 
   /** Makes sure level stays 4x4 grid **/
   // make a 4 x 4 grid if words provided fail to = 16 with blank divs
@@ -207,6 +226,7 @@ function start({ level }) {
   // ** Game-Board-Element-Selectors  ** //
   $(".change-color").on("click", changecolor);
 
+  // conditionally render grid-item
   // $(".grid-item").on("click", selectHorizontal);
   $(".grid-item").on("click",selectVertical);
 }
@@ -273,13 +293,17 @@ function selectVertical() {
 
 function checkUserAnswer() {
   console.log("CHECKING...");
-  // variables
-  const answer = $(".select").text();
-  console.log(answer);
+  const array1 = [];
+  $('input.select').each(function () {
+    // console.log($(this).val());
+    array1.push($(this).val()); 
+  });
+  console.log(array1);
+
   // 0 must change to index of levels and words
-  if (answer === levels[0].words[0] ) {
-    console.log("SUCESS BIRD IS THE WORD");
-    $(".select").css("background-color", "#ffd700");
-  }
+  // if (answer === levels[0].words[0] ) {
+  //   console.log("SUCESS BIRD IS THE WORD");
+  //   $(".select").css("background-color", "#ffd700");
+  // }
 }
 
